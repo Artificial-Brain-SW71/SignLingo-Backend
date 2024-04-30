@@ -32,6 +32,7 @@ public class UserDomain : IUserDomain
 
     public async Task<User> SignUp(User user)
     {
+        if (!IsValidData(user)) throw new Exception("must follow the user format");
         user.Password = _encryptDomain.Encrypt(user.Password);
         return await _userInfrastructure.SignUp(user);
     }
