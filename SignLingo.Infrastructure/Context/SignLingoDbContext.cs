@@ -27,7 +27,7 @@ public class SignLingoDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=sql10.freemysqlhosting.net,3306;Uid=sql10628037;Pwd=uBzjKgcgnP;Database=sql10628037", serverVersion);
+            optionsBuilder.UseMySql("server=viaduct.proxy.rlwy.net;port=37111;user=root;password=SNazcYLQjtrbkXxEsThkzOffQYQiBrEb;database=railway", serverVersion);
         }
     }
 
