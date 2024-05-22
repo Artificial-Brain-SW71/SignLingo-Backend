@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
@@ -38,7 +39,7 @@ namespace SignLingo.API.Controllers
             return exerciseResponses;
         }
         
-        [Filter.Authorize("client,admin")]
+        [AllowAnonymous]
         [HttpGet("module-exercise")]
         public async Task<IActionResult> GetExercisesByModuleNameAsync([FromQuery(Name = "module")]string moduleName)
         {

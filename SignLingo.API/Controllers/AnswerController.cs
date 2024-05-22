@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
@@ -37,7 +38,7 @@ namespace SignLingo.API.Controllers
         }
 
         // GET: api/Answer/Exercise/1
-        [Filter.Authorize("client,admin")]
+        [AllowAnonymous]
         [HttpGet("exercise-answer")]
         public async Task<IEnumerable<AnswerResponse>> Get([FromQuery(Name = "exerciseId")]int id)
         {

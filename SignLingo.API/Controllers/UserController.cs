@@ -27,7 +27,7 @@ namespace SignLingo.API.Controllers
             _userDomain = userDomain;
         }
         
-        [Filter.Authorize("client,admin")]
+        [AllowAnonymous]
         [HttpGet("email")]
         public async Task<UserResponse> GetByUserEmailAsync([FromQuery(Name = "email")]string email)
         {
@@ -36,7 +36,7 @@ namespace SignLingo.API.Controllers
         }
         
         // GET: api/User
-        [Filter.Authorize("admin")]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<UserResponse>> GetAllAsync()
         {
@@ -48,6 +48,7 @@ namespace SignLingo.API.Controllers
         }
 
         // GET: api/User/5
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "Get")]
         public async Task<UserResponse> Get(int id)
         {
