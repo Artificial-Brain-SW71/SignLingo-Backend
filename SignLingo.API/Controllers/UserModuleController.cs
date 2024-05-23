@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
@@ -43,7 +44,7 @@ namespace SignLingo.API.Controllers
             return userModuleResponse;
         }
         
-        [Filter.Authorize("client,admin")]
+        [AllowAnonymous]
         [HttpGet("email")]
         public async Task<IActionResult> GetModulesByUserEmailAsync([FromQuery(Name = "email")]string email)
         {
