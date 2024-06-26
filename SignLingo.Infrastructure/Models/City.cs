@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace SignLingo.Infrastructure.Models;
 
@@ -9,7 +10,7 @@ public class City : BaseModel
     [NotMapped]
     public Country country;
     
-    [IgnoreDataMember]
+    [JsonIgnore]
     public List<User> Users { get; set; }
     public int CountryId { get; set; }
 }

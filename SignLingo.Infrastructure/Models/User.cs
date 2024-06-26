@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SignLingo.Infrastructure.Models;
 
@@ -13,6 +14,7 @@ public class User : BaseModel
     public string? Roles { get; set; }
     public string? Type { get; set; }
     [NotMapped]
+    [JsonIgnore]
     public City city { get; set; }
     
     public List<UserModule> UserModule { get; set; }
