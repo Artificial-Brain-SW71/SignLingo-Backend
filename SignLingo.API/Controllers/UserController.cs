@@ -8,6 +8,7 @@ using SignLingo.API.Response;
 using SignLingo.Domain.Interfaces;
 using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
+using SignLingo.Services;
 
 namespace SignLingo.API.Controllers
 {
@@ -19,12 +20,14 @@ namespace SignLingo.API.Controllers
         private readonly IUserInfrastructure _userInfrastructure;
         private readonly IMapper _mapper;
         private readonly IUserDomain _userDomain;
+        private readonly MyServiceBusClient _serviceBusClient;
 
-        public UserController(IUserInfrastructure userInfrastructure, IMapper mapper, IUserDomain userDomain)
+        public UserController(IUserInfrastructure userInfrastructure, IMapper mapper, IUserDomain userDomain,MyServiceBusClient serviceBusClient)
         {
             _userInfrastructure = userInfrastructure;
             _mapper = mapper;
             _userDomain = userDomain;
+            _serviceBusClient = serviceBusClient;
         }
         
         [AllowAnonymous]
@@ -85,6 +88,7 @@ namespace SignLingo.API.Controllers
                 var user = _mapper.Map<UserRequest, User>(userInput);
                 var userCreated = await _userDomain.SignUp(user);
                 var userCreatedResponse = _mapper.Map<User, UserResponse>(userCreated);
+                await _serviceBusClient.SendMessageAsync(userCreated);
                 return Created($"api/v1/destinations/signup", userCreatedResponse);
             }
             catch (Exception e)

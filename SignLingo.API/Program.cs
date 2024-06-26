@@ -8,6 +8,7 @@ using SignLingo.Domain.Interfaces;
 using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
 using SignLingo.Infrastructure.Interfaces;
+using SignLingo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

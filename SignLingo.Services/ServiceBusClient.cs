@@ -1,6 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
 using System.Text.Json;
-using System.Threading.Tasks;
+namespace SignLingo.Services;
 
 public class MyServiceBusClient
 {
