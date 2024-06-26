@@ -1,3 +1,4 @@
+using Azure.Messaging.ServiceBus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using SignLingo.API.Mapper;
@@ -73,6 +74,15 @@ builder.Services.AddAuthentication(options =>
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
+builder.Services.AddSingleton(serviceProvider =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    var serviceBusSettings = configuration.GetSection("ServiceBus");
+    var connectionString = serviceBusSettings.GetValue<string>("ConnectionString");
+    var queueName = serviceBusSettings.GetValue<string>("QueueName");
+    return new MyServiceBusClient(connectionString, queueName);
 });
 
 var app = builder.Build();

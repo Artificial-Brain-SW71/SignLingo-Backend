@@ -9,6 +9,7 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="12.0.1" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+        <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.17.5" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
@@ -25,6 +26,7 @@
     <ItemGroup>
       <ProjectReference Include="..\SignLingo.Domain\SignLingo.Domain.csproj" />
       <ProjectReference Include="..\SignLingo.Infrastructure\SignLingo.Infrastructure.csproj" />
+      <ProjectReference Include="..\SignLingo.Services\SignLingo.Services.csproj" />
         
     </ItemGroup>
 
